@@ -13,14 +13,20 @@ def main():
     # if player 1 is playing first: 
     if choice == "p1":
          playerChoice = input("\n\n\t\tPlayer 1, do you want to be [X] or [O] ? -> ")  #choose x or o
-         if playerChoice == "X":
+         if playerChoice == "X" or playerChoice =="x":
+            playerChoice = "X"
             cmpChoice = "O"
             print("\n\n\t\tplayer1 is [X]")
             print("\t\tComputer is [O].\n\n")
-         else :
+         elif playerChoice=="O" or playerChoice =="o":
+             playerChoice = "O"
              cmpChoice="X"
              print("\n\n\t\tplayer1 is [O]")
              print("\t\tComputer is [X].\n\n")
+         else:
+             print("\t\tWrong input!")
+             return
+
 
     # if computer playing first:
     elif choice =="cmp":
@@ -97,42 +103,42 @@ def printTable(board):
     print("\t\t|  ",board[2][0],"\t|  ",board[2][1],"\t|  ",board[2][2],"\t|")
     print("\t\t|_______|_______|_______|\n\n\n")
 
-def isWinner(board, X_symb, Y_symb):
+def isWinner(board, playerChoice, compChoice):
     win = False
     # check the rows
     for row in range (0, 3):
-        if (board[row][0] == board[row][1] == board[row][2] == X_symb):
+        if (board[row][0] == board[row][1] == board[row][2] == playerChoice):
             win = True
             print("\t\t\t *** Player won! *** ")
             return win
-        elif (board[row][0] == board[row][1] == board[row][2] == Y_symb):
+        elif (board[row][0] == board[row][1] == board[row][2] == compChoice):
             win = True
             print("\t\t\t *** Computer won! *** ")
             return win               
     # check the columns
     for col in range (0, 3):
-        if (board[0][col] == board[1][col] == board[2][col] == X_symb):
+        if (board[0][col] == board[1][col] == board[2][col] == playerChoice):
             win = True
             print("\t\t\t *** Player1 won! *** ")
             return win
-        elif (board[0][col] == board[1][col] == board[2][col] == Y_symb):
+        elif (board[0][col] == board[1][col] == board[2][col] == compChoice):
             win = True
             print("\t\t\t *** Computer won! *** ")
             return win
     # check the diagnoals
-    if board[0][0] == board[1][1] == board[2][2] == X_symb:
+    if board[0][0] == board[1][1] == board[2][2] == playerChoice:
         win = True 
         print("\t\t\t *** Player1 won! *** ")
         return win
-    elif board[0][0] == board[1][1] == board[2][2] == Y_symb:
+    elif board[0][0] == board[1][1] == board[2][2] == compChoice:
         win = True
         print("\t\t\t *** Computer won! *** ")
         return win
-    elif board[0][2] == board[1][1] == board[2][0] == X_symb:
+    elif board[0][2] == board[1][1] == board[2][0] == playerChoice:
         win = True
         print("\t\t\t *** Player1 won! *** ")
         return win
-    elif board[0][2] == board[1][1] == board[2][0] == Y_symb:
+    elif board[0][2] == board[1][1] == board[2][0] == compChoice:
         win = True
         print("\t\t\t *** Computer won! *** ")
         return win
